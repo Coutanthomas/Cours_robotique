@@ -52,6 +52,10 @@ class Model(object):
         Returns:
             float -- Speed of motor1 (m/s), speech of motor2 (m/s)
         """
+        
+        m1_speed = (linear_speed + ((L * rotational_speed)/2))
+        m2_speed = (linear_speed - ((L * rotational_speed)/2))
+        return m1_speed, m2_speed
 
 
     def dk(self, m1_speed=None, m2_speed=None):
@@ -64,7 +68,17 @@ class Model(object):
         
         Returns:
             float -- linear speed (m/s), rotational speed (rad/s)
-        """
+        """       
+        if m1_speed==None:
+            m1_speed = self.m1.speed
+            
+        if m2_speed==None:
+            m2_speed = self.m2.speed
+        
+        linear_speed = (m1_speed + m2_speed) / 2
+        rotation_speed = (m1_speed - m2_speed) / L
+        return linear_speed, rotation_speed
+
 
     def update(self, dt):
         """Given the current state of the robot (speeds of the wheels) and a time step (dt), 
