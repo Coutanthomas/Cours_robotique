@@ -257,6 +257,10 @@ class SimpleRobotControl:
         )
 
         # TODO
+        # We need a third point to locate the robot in his ref (rectangle triangle)
+        x = m.x_goal - m.x
+        y = m.y_goal - m.y
+        
         local_speed = 0
         local_turn = 0
 
@@ -269,7 +273,11 @@ class SimpleRobotControl:
         """
         # TODO
         # d = np.rad2deg((a - b) % (2 * np.pi))
-        d = math.atan2(a, b)
+        
+        # The point of atan2() is that the signs of both inputs are known to it, so it can compute the correct quadrant for the angle.
+        # So we can have the smallest value
+        # atan2(x / y) 
+        d = math.atan2(math.sin(a - b) ,math.cos(a - b))
         return d
 
 
