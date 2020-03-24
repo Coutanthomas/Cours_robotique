@@ -92,9 +92,13 @@ class Model(object):
         linear_speed, rotation_speed = self.dk()
 
         # TODO
-
+        
+        x = dt * linear_speed * math.cos(self.theta + rotation_speed)
+        y = dt * linear_speed * math.sin(self.theta + rotation_speed)
+        theta = dt * rotation_speed
+        
         # Updating the robot position
-        self.x = self.x + 0  # TODO
-        self.y = self.y + 0  # TODO
-        self.theta = self.theta + 0  # TODO
+        self.x = self.x + x  # TODO
+        self.y = self.y + y  # TODO
+        self.theta = self.theta + theta  # TODO
 

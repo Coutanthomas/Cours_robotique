@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import random, math, pygame
+# import numpy as np
 import pygame.draw
 from pygame.locals import *
 import sys
@@ -267,7 +268,8 @@ class SimpleRobotControl:
         """Returns the smallest distance between 2 angles
         """
         # TODO
-        d = 0
+        # d = np.rad2deg((a - b) % (2 * np.pi))
+        d = math.atan2(a, b)
         return d
 
 
