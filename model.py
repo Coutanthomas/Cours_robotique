@@ -93,12 +93,16 @@ class Model(object):
 
         # TODO
         
-        x = dt * linear_speed * math.cos(self.theta + rotation_speed)
-        y = dt * linear_speed * math.sin(self.theta + rotation_speed)
-        theta = dt * rotation_speed
+        x = dt * linear_speed * math.cos(self.theta)
+        y = dt * linear_speed * math.sin(self.theta)
+        theta = dt * rotation_speed 
+        
+        x1 = (x) * math.cos(theta) - (y) * math.sin(theta)
+        y1 = (x) * math.sin(theta) + (y) * math.cos(theta)
+       
         
         # Updating the robot position
-        self.x = self.x + x  # TODO
-        self.y = self.y + y  # TODO
+        self.x = self.x + x1  # TODO
+        self.y = self.y + y1  # TODO
         self.theta = self.theta + theta  # TODO
 
