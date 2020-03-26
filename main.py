@@ -270,7 +270,7 @@ class SimpleRobotControl:
         local_speed = round(distance,2)
         print(local_speed)
         local_turn = 0
-        if local_speed != 0.00:
+        if local_speed > XY_TOL:
             local_turn = ( diff_angle / local_speed )
             print("--------")
         else:

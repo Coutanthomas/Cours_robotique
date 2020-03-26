@@ -2,6 +2,7 @@
 # import model as ik 
 # import model as update
 import model
+import math
 
 def test_dk():
     m = model.Model()
@@ -22,13 +23,34 @@ def test_ik():
     assert m.ik(0, 5) == (0.3, -0.3)
     assert m.ik(0, -5) == (-0.3, 0.3)
     assert m.ik(0, 0) == (0.0, 0.0)
+    assert m.ik(5, 3) == (5.18, 4.82)
 
 
-def test_update():
+def test_update_XandY_opposite_speed():
     m = model.Model()
-    
+    m.m1.speed = 2
+    m.m2.speed = -2
+    m.update(1/60)
+    assert (m.x, m.y) == (0.0, 0.0)
     
 
+def test_update_XandY_same_speed():
+    m = model.Model()
+    m.m1.speed = 60
+    m.m2.speed = 60
+    m.update(1/60)
+    assert (m.x, m.y) == (1.0, 0.0)
 
+
+# def test_update_theta():
+#     m = model.Model()
+#     m.m1.speed = 0
+#     m.m2.speed = 0
+#     m.theta = math.pi/2
+#     m.update(1/60)
+#     assert (m.x, m.y) == (0.0, 0.0)       
+
+
+ 
     
 
