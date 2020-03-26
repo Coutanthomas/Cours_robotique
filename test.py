@@ -26,7 +26,7 @@ def test_ik():
     assert m.ik(5, 3) == (5.18, 4.82)
 
 
-def test_update_XandY_opposite_speed():
+def test_update_same_opposite_speed():
     m = model.Model()
     m.m1.speed = 2
     m.m2.speed = -2
@@ -34,7 +34,7 @@ def test_update_XandY_opposite_speed():
     assert (m.x, m.y) == (0.0, 0.0)
     
 
-def test_update_XandY_same_speed():
+def test_update_same_speed():
     m = model.Model()
     m.m1.speed = 60
     m.m2.speed = 60
@@ -42,13 +42,16 @@ def test_update_XandY_same_speed():
     assert (m.x, m.y) == (1.0, 0.0)
 
 
-# def test_update_theta():
-#     m = model.Model()
-#     m.m1.speed = 0
-#     m.m2.speed = 0
-#     m.theta = math.pi/2
-#     m.update(1/60)
-#     assert (m.x, m.y) == (0.0, 0.0)       
+def test_update_change_pos_Y():
+    m = model.Model()
+    m.m1.speed = 0
+    m.m2.speed = 0
+    m.theta = math.pi/2
+    m.update(1/60)
+    m.m1.speed = 60
+    m.m2.speed = 60
+    m.update(1/60)
+    assert (round(m.x,2), round(m.y,2)) == (0.00, 1.00)       
 
 
  
